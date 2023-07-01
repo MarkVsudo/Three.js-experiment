@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Alkatra&family=Freehand&family=Mrs+Sheppards&family=Sansita+Swashed:wght@300&display=swap');
+
 *, 
 *::after, 
 *::before{
@@ -24,16 +26,97 @@ body{
   left: 0;
 }
 
+.movingBookCover{
+  width: 70px;
+  height: 100px;
+  cursor: pointer;
+  z-index: 999;
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  animation: moveAnimation 2.75s infinite linear;
+}
+
+@keyframes moveAnimation {
+  0% {
+    top: 70%;
+  }
+  50% {
+    top: 65%;
+  }
+  100% {
+    top: 70%;
+  }
+}
+
 
 #bookContent {
-  display: none;
+  /* display: none; */
+  display: block;
+  position: relative;
+  z-index: 9999;
   position: absolute;
   width: 500px;
-  top: 50%;
+  top: -150%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  transition: top 1.5s ease-in-out;
 }
+
+@keyframes handwriting {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* .handwriting-text {
+
+  font-size: 2.5rem;
+  overflow: hidden;
+  white-space: wrap;
+  animation: handwriting 6s linear both;
+} */
+
+.handwriting-text {
+  position: absolute;
+  top: 40%;
+  left: 55%;
+  transform: translate(-50%,-50%);
+  font-family: 'Freehand', cursive;
+  overflow: hidden;
+  font-size: 2.5rem;
+  white-space: nowrap;
+  animation: handwriting 5s linear both;
+}
+
+.handwriting-word {
+  white-space: nowrap;
+  display: inline-block;
+  overflow: hidden;
+}
+
+
+/* .mainImg{
+  opacity: 0;
+  transition: opacity .5s ease-in-out;
+}
+
+.img1, .img2 {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.img1 {
+  left: 300%;
+  transition: left 1s ease-in-out;
+}
+
+.img2 {
+  right: 200%;
+  transition: right 1s ease-in-out;
+} */
 
 #bookContent img{
   width: 100%;

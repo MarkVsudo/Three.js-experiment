@@ -121,5 +121,8 @@ window.addEventListener("resize", function () {
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
+// Remove controls from the camera
+controls.enabled = false;
+
 // Start the 3D rendering
 animate();

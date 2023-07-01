@@ -11,10 +11,21 @@
 
   <div id="container3D"></div>
 
-  <div id="bookContent" style="display: none;">
+  <div class="movingBookCover" onclick="openBook()"></div>
+
+  <div id="bookContent">
     <img src="./public/assets/page.jpg" alt="">
+
+    <div class="handwriting-text" id="handwriting">
+      <!-- <span>T</span><span>h</span><span>e</span> <span>w</span><span>e</span><span>b</span><span>s</span><span>i</span><span>t</span><span>e</span><span>,</span> <span>l</span><span>i</span><span>k</span><span>e</span> <span>a</span> <span>b</span><span>u</span><span>d</span><span>d</span><span>i</span><span>n</span><span>g</span> <span>f</span><span>l</span><span>o</span><span>w</span><span>e</span><span>r</span><span>,</span> <span>i</span><span>s</span> <span>u</span><span>n</span><span>d</span><span>e</span><span>r</span> <span>t</span><span>h</span><span>e</span> <span>s</span><span>k</span><span>i</span><span>l</span><span>l</span><span>e</span><span>d</span> <span>h</span><span>a</span><span>n</span><span>d</span><span>s</span> <span>o</span><span>f</span> <span>a</span><span>r</span><span>t</span><span>i</span><span>s</span><span>a</span><span>n</span><span>s</span><span>,</span> <span>e</span><span>a</span><span>g</span><span>e</span><span>r</span><span>l</span><span>y</span> <span>e</span><span>v</span><span>o</span><span>l</span><span>v</span><span>i</span><span>n</span><span>g</span> <span>t</span><span>o</span><span>w</span><span>a</span><span>r</span><span>d</span><span>s</span> <span>i</span><span>t</span><span>s</span> <span>g</span><span>r</span><span>a</span><span>n</span><span>d</span> <span>u</span><span>n</span><span>v</span><span>e</span><span>i</span><span>l</span><span>i</span><span>n</span><span>g</span><span>.</span> -->
+      The website, like a budding flower, is under the skilled hands of artisans, eagerly evolving towards its grand unveiling.
+
+    </div>
+    
     <a href="#" onclick="closeBook()"><i class='bx bx-bookmark-alt-minus'></i></a>
   </div>
+
+
   
   <script type="module" src="./public/app.js"></script>
   <script>
@@ -22,9 +33,26 @@
     const closeBookBtn = document.querySelector('.bx-bookmark-alt-minus');
   
     function closeBook() {
-      book.style.display = 'none';
+      book.style.top = '-150%';
       event.preventDefault();
     }
+
+    function openBook() { 
+      book.style.top = '50%' 
+    }
+
+    const handwritingDiv = document.getElementById('handwriting');
+    const words = handwritingDiv.textContent.split(' ');
+
+    handwritingDiv.innerHTML = words.map((word, index) => {
+      if ((index + 1) % 4 === 0) {
+        return `<br>`;
+      } else {
+        return `<span class="handwriting-word">&nbsp; ${word}</span>`;
+      }
+    }).join('');
+
+
 
   </script>
 </body>
