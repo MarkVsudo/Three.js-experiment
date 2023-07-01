@@ -18,5 +18,6 @@
 
 "Construction debris" (https://skfb.ly/oAUzU) by conflig is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 
-
 "Antique wooden desk with props" (https://skfb.ly/oHrDH) by shuvalov.di is licensed under CC Attribution-NonCommercial-ShareAlike (http://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+"Magic scroll and pen with feather" (https://skfb.ly/6YZ78) by Bled26 is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).

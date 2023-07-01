@@ -5,15 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mark Veskov - Web Developer</title>
   <link rel="stylesheet" href="./public/style.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
 
-  <!-- <div id="model-container"><a href="#"><img src="./public/assets/logo.png" alt=""></a></div>
-  <div class="sketchfab-embed-wrapper"> <iframe frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share width="1920" height="1080" src="https://sketchfab.com/models/3116825cd43b45fc921ab1019ee7cc86/embed?autostart=1&preload=1&ui_hint=0&ui_theme=dark"> </iframe> </div> -->
   <div id="container3D"></div>
 
+  <div id="bookContent" style="display: none;">
+    <img src="./public/assets/page.jpg" alt="">
+    <a href="#" onclick="closeBook()"><i class='bx bx-bookmark-alt-minus'></i></a>
+  </div>
   
   <script type="module" src="./public/app.js"></script>
-  <!-- <script src="dist/bundle.js"></script> -->
+  <script>
+    const book = document.getElementById('bookContent');
+    const closeBookBtn = document.querySelector('.bx-bookmark-alt-minus');
+  
+    function closeBook() {
+      book.style.display = 'none';
+      event.preventDefault();
+    }
+
+  </script>
 </body>
 </html>

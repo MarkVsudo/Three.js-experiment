@@ -12,7 +12,7 @@ const scene = new THREE.Scene();
 
 // Create a new camera with positions and angles
 const camera = new THREE.PerspectiveCamera(
-  75,
+  105,
   window.innerWidth / window.innerHeight,
   0.1,
   1000
@@ -22,80 +22,95 @@ const camera = new THREE.PerspectiveCamera(
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
 
-// Keep the 3D object on a global variable so we can access it later
-let object;
+// Keep the 3D objects on global variables so we can access them later
+let desk;
+let book;
 
 // OrbitControls allow the camera to move around the scene
 let controls;
 
-// Set which object to render
-let objToRender = "desk";
-
 // Instantiate a loader for the .gltf file
 const loader = new GLTFLoader();
 
-// Load the file
+// Load the desk model
 loader.load(
-  `/public/assets/${objToRender}/scene.gltf`,
+  "/public/assets/desk/scene.gltf",
   function (gltf) {
-    // If the file is loaded, add it to the scene
-    object = gltf.scene;
-    scene.add(object);
+    desk = gltf.scene;
+    scene.add(desk);
 
-    // Move the 3D model lower by adjusting its position in the Y-axis
-    object.position.y = -0.7; // Adjust this value to move the model up or down
+    desk.position.y = -1.9;
   },
   function (xhr) {
-    // While it is loading, log the progress
     console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
   },
   function (error) {
-    // If there is an error, log it
+    console.error(error);
+  }
+);
+
+// Load the book model
+loader.load(
+  "/public/assets/book/scene.gltf",
+  function (gltf) {
+    book = gltf.scene;
+    scene.add(book);
+
+    book.position.y = 0.3; // Adjust the initial position of the book
+    book.position.z = 0.2; // Adjust the initial position of the book
+    book.rotation.y = Math.PI; // Adjust the initial position of the book
+  },
+  function (xhr) {
+    console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+  },
+  function (error) {
     console.error(error);
   }
 );
 
 // Instantiate a new renderer and set its size
-const renderer = new THREE.WebGLRenderer({ alpha: true }); //Alpha: true allows for the transparent background
+const renderer = new THREE.WebGLRenderer({ alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 // Add the renderer to the DOM
 document.getElementById("container3D").appendChild(renderer.domElement);
 
-// Set how far the camera will be from the 3D model
-camera.position.z = objToRender === "desk" ? 2 : 10;
+// Set the camera position
+camera.position.set(0, -0.2, 2);
 
-// Set how far the camera will be from the 3D model
-camera.position.set(0, 0.6, 2); // Adjust the X, Y, and Z values to change the initial camera position
-camera.lookAt(0, 0, 0); // Set the point the camera looks at, in this case, the origin (0,0,0)
-
-// Add lights to the scene, so we can actually see the 3D model
-const topLight = new THREE.DirectionalLight(0xffffff, 1); // (color, intensity)
-topLight.position.set(500, 500, 500); // top-left-ish
+// Add lights to the scene
+const topLight = new THREE.DirectionalLight(0xffffff, 1);
+topLight.position.set(500, 500, 500);
 topLight.castShadow = true;
 scene.add(topLight);
 
-const ambientLight = new THREE.AmbientLight(
-  0x333333,
-  objToRender === "desk" ? 5 : 1
-);
+const ambientLight = new THREE.AmbientLight(0x333333, 1);
 scene.add(ambientLight);
 
-// This adds controls to the camera, so we can rotate / zoom it with the mouse
-if (objToRender === "desk") {
-  controls = new OrbitControls(camera, renderer.domElement);
-}
+// Add controls to the camera
+controls = new OrbitControls(camera, renderer.domElement);
+
+// Smooth movement variables
+const movementSpeed = 0.0015;
+let moveDirection = 1;
+let initialYPosition = book ? book.position.y : 0;
 
 // Render the scene
 function animate() {
   requestAnimationFrame(animate);
-  // Here we could add some code to update the scene, adding some automatic movement
 
-  // Make the eye move (not applicable in this case since it's static now)
-  // if (object && objToRender === "desk") {
-  //   object.rotation.y = -3 + (mouseX / window.innerWidth) * 3;
-  //   object.rotation.x = -1.2 + (mouseY * 2.5) / window.innerHeight;
-  // }
+  // Smoothly move the book up and down
+  if (book) {
+    book.position.y += movementSpeed * moveDirection;
+
+    // Check if the book reaches a certain height, then change the moveDirection to reverse the movement
+    if (book.position.y >= initialYPosition + 0.3) {
+      moveDirection = -1;
+    } else if (book.position.y <= initialYPosition) {
+      moveDirection = 1;
+    }
+  }
+
   renderer.render(scene, camera);
 }
 
@@ -105,12 +120,6 @@ window.addEventListener("resize", function () {
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
-
-// Add mouse position listener, so we can make the eye move (not applicable in this case)
-// document.onmousemove = (e) => {
-//   mouseX = e.clientX;
-//   mouseY = e.clientY;
-// };
 
 // Start the 3D rendering
 animate();

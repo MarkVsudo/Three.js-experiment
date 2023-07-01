@@ -9,27 +9,12 @@
 body{
   overflow: hidden;
   font-family: 'Montserrat', sans-serif;
-  background-color: #000;
+  background: url(./assets/library3.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
-/* #model-container {
-  width: 100vw !important;
-  height: 3rem !important;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: blue;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#model-container a img{
-  width: 30%;
-  object-fit: contain;
-  mix-blend-mode:darken;
-  margin-inline: 0;
-} */
 
 #container3D canvas {
   width: 100vw !important;
@@ -37,4 +22,29 @@ body{
   position: absolute;
   top: 0;
   left: 0;
+}
+
+
+#bookContent {
+  display: none;
+  position: absolute;
+  width: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+#bookContent img{
+  width: 100%;
+  border-radius: 1rem;
+}
+
+#bookContent a{
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  color: rgba(20, 20, 20, 0.767);
+  font-size: 2rem;
+  z-index: 999;
 }
