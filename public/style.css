@@ -11,7 +11,7 @@ body{
   font-family: 'Montserrat', sans-serif;
 }
 
-#model-container {
+/* #model-container {
   width: 100vw !important;
   height: 3rem !important;
   position: absolute;
@@ -28,8 +28,4 @@ body{
   object-fit: contain;
   mix-blend-mode:darken;
   margin-inline: 0;
-}
-
-.sketchfab-embed-wrapper{
-
-}
+} */
