@@ -9,6 +9,7 @@
 body{
   overflow: hidden;
   font-family: 'Montserrat', sans-serif;
+  background-color: #000;
 }
 
 /* #model-container {
@@ -29,3 +30,11 @@ body{
   mix-blend-mode:darken;
   margin-inline: 0;
 } */
+
+#container3D canvas {
+  width: 100vw !important;
+  height: 100vh !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
