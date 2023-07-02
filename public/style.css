@@ -70,31 +70,33 @@ body{
   to { width: 100%; }
 }
 
-/* .handwriting-text {
-
-  font-size: 2.5rem;
-  overflow: hidden;
-  white-space: wrap;
-  animation: handwriting 6s linear both;
-} */
-
 .handwriting-text {
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 55%;
-  transform: translate(-50%,-50%);
+  width: 22ch;
+  transform: translate(-50%, -50%);
   font-family: 'Freehand', cursive;
   overflow: hidden;
   font-size: 2.5rem;
   white-space: nowrap;
-  animation: handwriting 5s linear both;
+  /* animation: handwriting 5s linear both; */
+  animation: typing 2s steps(150);
 }
 
-.handwriting-word {
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+
+
+/* .handwriting-word {
   white-space: nowrap;
   display: inline-block;
   overflow: hidden;
-}
+} */
 
 
 /* .mainImg{
